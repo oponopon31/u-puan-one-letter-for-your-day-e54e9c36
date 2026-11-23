@@ -39,6 +39,7 @@ def write_and_verify(letter: str, out_dir: str) -> tuple[str, str]:
     digest = hashlib.sha256(data).hexdigest()
     assert written == data, "entry.txt bytes differ from intended letter"
     assert hashlib.sha256(written).hexdigest() == digest, "sha256 mismatch"
+    assert len(written) == 1, "gate requires exactly 1 character, file has %d bytes" % len(written)
     return path, digest
 
 
